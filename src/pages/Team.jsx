@@ -50,7 +50,7 @@ const Team = () => {
         const item = JSON.parse(localStorage.getItem('team'))
         const filteredItems = item.filter(e => e !== name)
         localStorage.setItem('team', JSON.stringify(filteredItems))
-        window.location.reload()
+        SetAllPokemons()
     }
 
   return (
