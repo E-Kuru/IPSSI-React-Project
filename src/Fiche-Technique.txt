@@ -1,0 +1,16 @@
+Titre : PokeTeam
+
+Description : PokeTeam est une petite app permettant de se faire une équipe de 6 pokémons 
+1ère génération et de la gérer (Supprimer - ajouter).
+
+Fonctionnalités : 
+
+- Récupérer des pokemons
+- Ajouter un pokemon dans son équipe
+- Supprimer un pokemon de son équipe
+
+Dépendences :
+
+- React-router-dom
+- Styled components
+- Axios
