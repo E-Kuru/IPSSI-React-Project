@@ -5,7 +5,6 @@ import PokemonTeamCard from '../components/PokemonTeamCard'
 import { Link } from 'react-router-dom'
 
 const List = styled.div `
-    border: 1px solid white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -33,12 +32,14 @@ const Team = () => {
 
     const SetAllPokemons = async () => {
         const initialData = JSON.parse(localStorage.getItem("team"))
+        console.log(initialData);
         const pokemonData = await Promise.all(
           initialData.map(async (item) => {
             const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${item}`)
             return result
         })
         )
+        console.log(pokemonData);
         setPokemonsTeam(pokemonData)
     }
 
@@ -46,11 +47,11 @@ const Team = () => {
         SetAllPokemons()        
     },[])
 
-    const removeFDP = (name) => {
+    const removeTeam = async (name) => {
         const item = JSON.parse(localStorage.getItem('team'))
         const filteredItems = item.filter(e => e !== name)
         localStorage.setItem('team', JSON.stringify(filteredItems))
-        SetAllPokemons()
+        window.location.reload()        
     }
 
   return (
@@ -60,7 +61,7 @@ const Team = () => {
         {PokemonsTeam.length > 0 && 
             <div className="pokeList">
                 {PokemonsTeam.map( (e,i) => (
-                    <PokemonTeamCard poke={e} key={i} remove={(name) => removeFDP(name)}/>
+                    <PokemonTeamCard poke={e} key={i} remove={(name) => removeTeam(name)}/>
                 ))}
             </div>
         }
